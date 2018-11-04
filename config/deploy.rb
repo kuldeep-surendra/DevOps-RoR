@@ -50,6 +50,7 @@ namespace :deploy do
   desc 'Initial Deploy'
   task :initial do
     on roles(:app) do
+      run "sudo service nginx restart"
       before 'deploy:restart', 'puma:start'
       invoke 'deploy'
     end
