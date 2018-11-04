@@ -20,6 +20,7 @@ set :puma_error_log,  "#{release_path}/log/puma.access.log"
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle}
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 
 namespace :puma do
