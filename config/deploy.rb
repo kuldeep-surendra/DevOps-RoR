@@ -8,7 +8,7 @@ set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
 set :pty,             true
-set :use_sudo,        false
+set :use_sudo,        true
 set :stage,           :production
 set :deploy_via,      :remote_cache
 set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
@@ -50,8 +50,8 @@ namespace :deploy do
   desc 'Initial Deploy'
   task :initial do
     on roles(:app) do
-      run "sudo service nginx restart"
-      before 'deploy:restart', 'puma:start'
+      # execute "mkdir /home/#{fetch(:user)}/apps/#{fetch(:application)}/current"
+      before 'deploy:restart', 'puma:start'      
       invoke 'deploy'
     end
   end
@@ -59,7 +59,6 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      run "sudo service nginx restart"
       invoke 'puma:restart'
     end
   end
