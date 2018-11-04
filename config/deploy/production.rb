@@ -9,10 +9,10 @@ set :log_level, :debug
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-role :app, %w{deploy@13.127.111.111}
-role :web, %w{deploy@13.127.111.111}
-role :db, %w{deploy@13.127.111.111}
-server '13.127.111.111', roles: %w{:web, :app, :db}, user: 'deploy'
+role :app, %w{deploy@13.233.99.122}
+role :web, %w{deploy@13.233.99.122}
+role :db, %w{deploy@13.233.99.122}
+server '13.233.99.122', roles: %w{:web, :app, :db}, user: 'deploy'
 
 set :ssh_options, {
    forward_agent: true,
