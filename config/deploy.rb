@@ -50,7 +50,6 @@ namespace :deploy do
   desc 'Initial Deploy'
   task :initial do
     on roles(:app) do
-      # execute "mkdir /home/#{fetch(:user)}/apps/#{fetch(:application)}/current"
       before 'deploy:restart', 'puma:start'      
       invoke 'deploy'
     end
